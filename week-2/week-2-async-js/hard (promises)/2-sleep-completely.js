@@ -5,6 +5,19 @@
  */
 
 function sleep(milliseconds) {
+
+    function halt(resolve) {
+        for (let i = 0; i < milliseconds; i++) {
+
+        }
+        resolve();
+    }
+
+    return new Promise(halt);
 }
 
-module.exports = sleep;
+let p = sleep(5000000000);
+
+p.then(() => console.log("Wait is over"));
+
+// module.exports = sleep;
