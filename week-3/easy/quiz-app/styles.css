@@ -1,0 +1,41 @@
+body{
+    background: black;
+    color: wheat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
+#card{
+    width: 30%;
+    height: 40%;
+    border: 1px solid white;
+    border-radius: 5%;
+    margin: 0 auto;
+    display: flex;
+    gap: 1em;
+    padding: 2em;
+    flex-direction: column;
+}
+
+#final{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    height: 40%;
+    border: 1px solid white;
+    margin: 0 auto;
+    gap: 1em;
+    padding: 2em;
+}
+
+button{
+    margin: 1em auto;
+    width: 30%;
+    padding: 0.5em;
+    border-radius: 5%;
+}
+
