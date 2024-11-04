@@ -1,11 +1,17 @@
+// import the dataset containing the quiz questions
 import { quizData } from "./data.js"
 
+//variable to handle the index of question number to be shown from the array.
 var i = Math.floor(Math.random() * quizData.length);
+
+// variable to count the number of questions answered so that once finished we can show the restart option
 var count = quizData.length - 1;
 console.log(quizData)
 
+// boolean array to store the users answers if they are true or false
 let ans = [];
 
+// function to handle the submission of answers
 
 window.clicKed = function clicKed() {
     let inputs = document.getElementsByName("option");
@@ -15,8 +21,6 @@ window.clicKed = function clicKed() {
             console.log(quizData[i].correct);
             console.log(ele.value);
             ans.push(ele.value == quizData[i].correct)
-            // let currans = ele.value == quizData[i].correct;
-            // ans.push(currans)
         }
     });
     i++;
@@ -25,12 +29,17 @@ window.clicKed = function clicKed() {
 
 };
 
+//function to restart the quiz, once finishes
+// we reset the variable i, count and also the ans array
+
 window.restart = function restart() {
     i = Math.floor(Math.random() * quizData.length);
     count = quizData.length - 1;
     ans = [];
     render();
 }
+
+// function that creates and returns the card component
 
 function cardEl(quiz, i) {
 
@@ -54,32 +63,19 @@ function cardEl(quiz, i) {
         </div>
         <button type="button" onclick="clicKed()">select</button>
     </div>`;
-
-    // let question = document.getElementById("q");
-    // let a = document.querySelector("#a span");
-
-    // let b = document.querySelector("#b span");
-
-    // let c = document.querySelector("#c span");
-
-    // let d = document.querySelector("#d span");
-    // console.log(i)
-    // question.textContent = quiz.question;
-    // a.textContent = quiz.a;
-    // b.textContent = quiz.b;
-    // c.textContent = quiz.c;
-    // d.textContent = quiz.d;
     return card;
 }
+
+// this function renders everything to the screen
 
 function render() {
 
     if (count < 0) {
         console.log("Done");
-        let body = document.querySelector("body");
+        let body = document.getElementById("body");
         let result = ans.filter(a => a == true);
         result = result.length
-        let card = `<div id="final"><div>Your have got ${result}/${quizData.length}</div>
+        let card = `<div id="final"><h2>Your score is  ${result}/${quizData.length}</h2>
         <button type="button" onclick="restart()"> Restart</button></div>
         `
 
@@ -88,16 +84,11 @@ function render() {
     }
     else {
         i = i % quizData.length;
-        let body = document.querySelector("body");
+        let body = document.getElementById("body");
         let card = cardEl(quizData[i], i);
         // console.log(card);
         body.innerHTML = card;
     }
 }
-// let body = document.querySelector("body");
-// let button = document.createElement("button");
-// button.setAttribute("onclick", "clicKed()");
-// button.innerText = "Submit";
-// body.appendChild(button)
 
 render();
